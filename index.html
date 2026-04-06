@@ -15,59 +15,64 @@
         * { box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--gris-suave); margin: 0; padding: 10px; color: #333; }
         
-        /* Cabecera Corporativa */
+        /* Cabecera */
         .header { text-align: center; padding: 25px 0; background: white; border-radius: 0 0 20px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin: -10px -10px 20px -10px; }
-        
-        /* Contenedor del logo con el nombre de archivo exacto */
-        .header img { max-width: 200px; height: auto; margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto; }
-        
+        .header img { max-width: 180px; height: auto; margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto; }
         .header h2 { margin: 0; font-size: 1.1em; color: var(--azul-elecnor); text-transform: uppercase; letter-spacing: 2px; font-weight: 800; }
         
-        /* Controles de Búsqueda y Filtros */
+        /* Controles con Scroll Horizontal */
         .sticky-controls { position: sticky; top: 10px; z-index: 100; background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px; border-left: 5px solid var(--naranja-elecnor); }
-        
         .search-container { display: flex; gap: 10px; margin-bottom: 12px; }
         #searchInput { flex-grow: 1; padding: 12px; border: 2px solid #eee; border-radius: 10px; font-size: 16px; outline: none; }
-        #searchInput:focus { border-color: var(--azul-elecnor); }
         .reset-btn { padding: 10px 18px; border: none; background-color: #666; color: white; border-radius: 10px; font-weight: bold; cursor: pointer; }
         
-        /* Estilos de Filtros */
-        .filter-row { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
-        .filter-label { font-size: 0.75em; font-weight: 800; color: var(--azul-elecnor); text-transform: uppercase; min-width: 60px; }
-        .filters-scroll { display: flex; overflow-x: auto; gap: 8px; padding-bottom: 5px; flex-grow: 1; scrollbar-width: none; }
-        .filters-scroll::-webkit-scrollbar { display: none; }
-        .filter-btn { white-space: nowrap; padding: 7px 14px; border: 1.5px solid #ddd; background: white; color: #555; border-radius: 20px; font-weight: 600; cursor: pointer; font-size: 12px; transition: all 0.2s; }
-        .filter-btn.active { background: var(--azul-elecnor); color: white; border-color: var(--azul-elecnor); }
+        .filter-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; border-top: 1px solid #f0f0f0; padding-top: 8px; }
+        .filter-label { font-size: 0.7em; font-weight: 800; color: var(--azul-elecnor); text-transform: uppercase; min-width: 55px; }
         
-        /* Listado */
+        /* MAGIA DEL SCROLL */
+        .filters-scroll { 
+            display: flex; 
+            overflow-x: auto; 
+            gap: 8px; 
+            padding: 5px 0; 
+            flex-grow: 1; 
+            -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+        }
+        /* Ocultar barra de scroll visual pero mantener funcionalidad */
+        .filters-scroll::-webkit-scrollbar { display: none; }
+        .filters-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .filter-btn { white-space: nowrap; padding: 7px 15px; border: 1.5px solid #ddd; background: white; color: #555; border-radius: 20px; font-weight: 600; cursor: pointer; font-size: 12px; }
+        .filter-btn.active { background: var(--azul-elecnor); color: white; border-color: var(--azul-elecnor); box-shadow: 0 2px 5px rgba(0,85,149,0.3); }
+        
+        /* Directorio */
         #directory { display: grid; grid-template-columns: 1fr; gap: 15px; }
         @media (min-width: 768px) { #directory { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); } }
         
-        /* Tarjetas de Contacto */
         .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 3px 6px rgba(0,0,0,0.05); border-top: 4px solid var(--azul-elecnor); }
         .card h3 { margin: 0 0 10px 0; font-size: 1.1em; color: #111; border-bottom: 1px solid #eee; padding-bottom: 8px; text-transform: uppercase; }
         .info-row { font-size: 1em; margin-bottom: 8px; color: #444; display: flex; justify-content: space-between; align-items: center; }
         .info-row strong { color: var(--azul-elecnor); font-size: 0.85em; }
-        .info-row a { color: var(--naranja-elecnor); text-decoration: none; font-weight: bold; border: 1.5px solid var(--naranja-elecnor); padding: 2px 8px; border-radius: 6px; }
+        .info-row a { color: var(--naranja-elecnor); text-decoration: none; font-weight: bold; border: 1.5px solid var(--naranja-elecnor); padding: 2px 10px; border-radius: 6px; }
         
-        .tags { display: flex; gap: 8px; margin-top: 12px; }
-        .tag { padding: 4px 10px; border-radius: 6px; font-size: 0.7em; font-weight: 800; text-transform: uppercase; }
+        .tags { display: flex; gap: 8px; margin-top: 15px; }
+        .tag { padding: 4px 12px; border-radius: 6px; font-size: 0.7em; font-weight: 800; text-transform: uppercase; }
         .tag-planta { background: #eef6fc; color: var(--azul-elecnor); }
         .tag-org { background: #fff3eb; color: var(--naranja-elecnor); }
         
-        .mensaje { text-align: center; color: var(--azul-elecnor); font-weight: bold; padding: 40px; }
+        .mensaje { text-align: center; color: var(--azul-elecnor); font-weight: bold; padding: 50px; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <img src="Logo elecnor.webp" alt="Elecnor - Delegación Sur">
-        <h2>Delegación Sur</h2>
+        <img src="Logo elecnor.webp" alt="Elecnor - Dirección Sur">
+        <h2>Dirección Sur</h2>
     </div>
     
     <div class="sticky-controls">
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar por nombre o unidad...">
+            <input type="text" id="searchInput" placeholder="Buscar por nombre...">
             <button class="reset-btn" onclick="resetFilters()">Reset</button>
         </div>
         
@@ -87,28 +92,24 @@
     </div>
     
     <div id="directory">
-        <div class="mensaje">Cargando base de datos oficial...</div>
+        <div class="mensaje">Accediendo al Directorio Dirección Sur...</div>
     </div>
 
     <script>
-        // URL de tu Google Sheets (Asegúrate que sea el enlace TSV)
         const urlTSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTokDup2b-7qo7KBnQoZUCALh2d36Yz__rJq8IbSegFXweLgAW0PR0kzndrFQ2fFenhjTQ37jwnWqs2/pub?output=tsv";
         
         let personal = []; 
-        let currentFloor = 'TODAS';
-        let currentOrg = 'TODAS';
+        let fPlanta = 'TODAS';
+        let fOrg = 'TODAS';
         
-        const normalizar = (t) => t ? t.toString().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim() : "";
+        const norm = (t) => t ? t.toString().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim() : "";
 
         async function cargar() {
             try {
-                // Forzamos descarga fresca
                 const r = await fetch(urlTSV + "&v=" + Date.now());
-                if (!r.ok) throw new Error("Error de red");
                 const tabla = await r.text();
                 const filas = tabla.split(/\r?\n/).filter(f => f.trim() !== '');
                 
-                // Mapeamos las columnas basándonos en tus nombres (nombre, planta, organizacion, ext, movil)
                 personal = filas.slice(1).map(f => {
                     const c = f.split('\t');
                     return {
@@ -120,15 +121,14 @@
                     };
                 }).filter(p => p.nombre !== "");
 
-                generarBotones();
-                renderizar();
+                generarFiltros();
+                render();
             } catch (e) {
-                console.error(e);
-                document.getElementById('directory').innerHTML = '<div class="mensaje" style="color:red;">Error de conexión con la base de datos corporativa.</div>';
+                document.getElementById('directory').innerHTML = '<div class="mensaje" style="color:red;">Error de conexión.</div>';
             }
         }
 
-        function generarBotones() {
+        function generarFiltros() {
             const plantas = [...new Set(personal.map(p => p.planta))].filter(Boolean).sort();
             const orgs = [...new Set(personal.map(p => p.organizacion))].filter(Boolean).sort();
 
@@ -149,20 +149,20 @@
             });
         }
 
-        function renderizar() {
-            const buscar = normalizar(document.getElementById('searchInput').value);
+        function render() {
+            const buscar = norm(document.getElementById('searchInput').value);
             const filtrados = personal.filter(p => {
-                const matchNombre = normalizar(p.nombre).includes(buscar);
-                const matchPlanta = currentFloor === 'TODAS' || p.planta === currentFloor;
-                const matchOrg = currentOrg === 'TODAS' || p.organizacion === currentOrg;
-                return matchNombre && matchPlanta && matchOrg;
+                const mNombre = norm(p.nombre).includes(buscar);
+                const mPlanta = fPlanta === 'TODAS' || p.planta === fPlanta;
+                const mOrg = fOrg === 'TODAS' || p.organizacion === fOrg;
+                return mNombre && mPlanta && mOrg;
             });
 
             const lista = document.getElementById('directory');
             lista.innerHTML = '';
 
             if (filtrados.length === 0) {
-                lista.innerHTML = '<div class="mensaje" style="color:#999;">Sin resultados para esta búsqueda.</div>';
+                lista.innerHTML = '<div class="mensaje" style="color:#999;">No hay coincidencias.</div>';
                 return;
             }
 
@@ -182,17 +182,17 @@
         }
 
         window.filterByFloor = (v, btn) => {
-            currentFloor = v;
+            fPlanta = v;
             document.querySelectorAll('#floorFilters .filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            renderizar();
+            render();
         };
 
         window.filterByOrg = (v, btn) => {
-            currentOrg = v;
+            fOrg = v;
             document.querySelectorAll('#orgFilters .filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            renderizar();
+            render();
         };
 
         window.resetFilters = () => {
@@ -201,9 +201,7 @@
             filterByOrg('TODAS', document.getElementById('btn-todas-org'));
         };
 
-        document.getElementById('searchInput').addEventListener('input', renderizar);
-        
-        // Ejecutar al cargar
+        document.getElementById('searchInput').addEventListener('input', render);
         cargar();
     </script>
 </body>
