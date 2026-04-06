@@ -20,7 +20,7 @@
         .header img { max-width: 180px; height: auto; margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto; }
         .header h2 { margin: 0; font-size: 1.1em; color: var(--azul-elecnor); text-transform: uppercase; letter-spacing: 2px; font-weight: 800; }
         
-        /* Controles con Scroll Horizontal */
+        /* Controles */
         .sticky-controls { position: sticky; top: 10px; z-index: 100; background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px; border-left: 5px solid var(--naranja-elecnor); }
         .search-container { display: flex; gap: 10px; margin-bottom: 12px; }
         #searchInput { flex-grow: 1; padding: 12px; border: 2px solid #eee; border-radius: 10px; font-size: 16px; outline: none; }
@@ -29,23 +29,35 @@
         .filter-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; border-top: 1px solid #f0f0f0; padding-top: 8px; }
         .filter-label { font-size: 0.7em; font-weight: 800; color: var(--azul-elecnor); text-transform: uppercase; min-width: 55px; }
         
-        /* MAGIA DEL SCROLL */
+        /* --- SCROLL BLINDADO --- */
         .filters-scroll { 
             display: flex; 
-            overflow-x: auto; 
+            overflow-x: auto; /* Forzamos scroll horizontal */
             gap: 8px; 
-            padding: 5px 0; 
+            padding: 10px 0; /* Un poco más de aire para ver la barra */
             flex-grow: 1; 
-            -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+            white-space: nowrap; /* Evita que los botones salten de línea */
+            -webkit-overflow-scrolling: touch;
         }
-        /* Ocultar barra de scroll visual pero mantener funcionalidad */
-        .filters-scroll::-webkit-scrollbar { display: none; }
-        .filters-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Estilo visual de la barra de scroll (para que sea visible) */
+        .filters-scroll::-webkit-scrollbar {
+            height: 4px; /* Grosor de la barra */
+        }
+        .filters-scroll::-webkit-scrollbar-track {
+            background: #eee;
+            border-radius: 10px;
+        }
+        .filters-scroll::-webkit-scrollbar-thumb {
+            background: var(--azul-elecnor); /* Barra color Elecnor */
+            border-radius: 10px;
+        }
+        /* ----------------------- */
         
-        .filter-btn { white-space: nowrap; padding: 7px 15px; border: 1.5px solid #ddd; background: white; color: #555; border-radius: 20px; font-weight: 600; cursor: pointer; font-size: 12px; }
+        .filter-btn { display: inline-block; padding: 7px 15px; border: 1.5px solid #ddd; background: white; color: #555; border-radius: 20px; font-weight: 600; cursor: pointer; font-size: 12px; }
         .filter-btn.active { background: var(--azul-elecnor); color: white; border-color: var(--azul-elecnor); box-shadow: 0 2px 5px rgba(0,85,149,0.3); }
         
-        /* Directorio */
+        /* Listado */
         #directory { display: grid; grid-template-columns: 1fr; gap: 15px; }
         @media (min-width: 768px) { #directory { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); } }
         
@@ -72,7 +84,7 @@
     
     <div class="sticky-controls">
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar por nombre...">
+            <input type="text" id="searchInput" placeholder="Escribir nombre...">
             <button class="reset-btn" onclick="resetFilters()">Reset</button>
         </div>
         
@@ -92,7 +104,7 @@
     </div>
     
     <div id="directory">
-        <div class="mensaje">Accediendo al Directorio Dirección Sur...</div>
+        <div class="mensaje">Cargando Dirección Sur...</div>
     </div>
 
     <script>
@@ -124,7 +136,7 @@
                 generarFiltros();
                 render();
             } catch (e) {
-                document.getElementById('directory').innerHTML = '<div class="mensaje" style="color:red;">Error de conexión.</div>';
+                document.getElementById('directory').innerHTML = '<div class="mensaje" style="color:red;">Error de datos.</div>';
             }
         }
 
@@ -162,7 +174,7 @@
             lista.innerHTML = '';
 
             if (filtrados.length === 0) {
-                lista.innerHTML = '<div class="mensaje" style="color:#999;">No hay coincidencias.</div>';
+                lista.innerHTML = '<div class="mensaje" style="color:#999;">Sin resultados.</div>';
                 return;
             }
 
