@@ -27,35 +27,39 @@
         .reset-btn { padding: 10px 18px; border: none; background-color: #666; color: white; border-radius: 10px; font-weight: bold; cursor: pointer; }
         
         .filter-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; border-top: 1px solid #f0f0f0; padding-top: 8px; }
-        .filter-label { font-size: 0.7em; font-weight: 800; color: var(--azul-elecnor); text-transform: uppercase; min-width: 55px; }
+        .filter-label { font-size: 0.7em; font-weight: 800; color: var(--azul-elecnor); text-transform: uppercase; min-width: 60px; }
         
-        /* --- SCROLL BLINDADO --- */
+        /* --- SCROLL BLINDADO (PC Y MÓVIL) --- */
         .filters-scroll { 
             display: flex; 
-            overflow-x: auto; /* Forzamos scroll horizontal */
+            overflow-x: auto; /* Permite scroll horizontal */
             gap: 8px; 
-            padding: 10px 0; /* Un poco más de aire para ver la barra */
+            padding: 5px 0 12px 0; /* Espacio extra abajo para que la barra de PC no tape los botones */
             flex-grow: 1; 
-            white-space: nowrap; /* Evita que los botones salten de línea */
-            -webkit-overflow-scrolling: touch;
+            white-space: nowrap; 
+            -webkit-overflow-scrolling: touch; /* Scroll suave en móviles */
         }
 
-        /* Estilo visual de la barra de scroll (para que sea visible) */
+        /* Estilo visual de la barra de scroll para que se vea en PC (Chrome, Edge, Safari) */
         .filters-scroll::-webkit-scrollbar {
-            height: 4px; /* Grosor de la barra */
+            height: 6px; /* Grosor visible en PC */
+            display: block;
         }
         .filters-scroll::-webkit-scrollbar-track {
-            background: #eee;
+            background: #f1f1f1;
             border-radius: 10px;
         }
         .filters-scroll::-webkit-scrollbar-thumb {
-            background: var(--azul-elecnor); /* Barra color Elecnor */
+            background: #ccc; /* Color gris para que sea visible pero elegante */
             border-radius: 10px;
         }
-        /* ----------------------- */
+        .filters-scroll::-webkit-scrollbar-thumb:hover {
+            background: var(--azul-elecnor); /* Se vuelve azul al pasar el ratón */
+        }
+        /* ------------------------------------ */
         
         .filter-btn { display: inline-block; padding: 7px 15px; border: 1.5px solid #ddd; background: white; color: #555; border-radius: 20px; font-weight: 600; cursor: pointer; font-size: 12px; }
-        .filter-btn.active { background: var(--azul-elecnor); color: white; border-color: var(--azul-elecnor); box-shadow: 0 2px 5px rgba(0,85,149,0.3); }
+        .filter-btn.active { background: var(--azul-elecnor); color: white; border-color: var(--azul-elecnor); }
         
         /* Listado */
         #directory { display: grid; grid-template-columns: 1fr; gap: 15px; }
