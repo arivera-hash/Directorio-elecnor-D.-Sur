@@ -17,70 +17,69 @@
         
         /* Cabecera Corporativa */
         .header { text-align: center; padding: 25px 0; background: white; border-radius: 0 0 20px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin: -10px -10px 20px -10px; }
+        
+        /* Contenedor del logo con el nombre de archivo exacto */
         .header img { max-width: 200px; height: auto; margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto; }
+        
         .header h2 { margin: 0; font-size: 1.1em; color: var(--azul-elecnor); text-transform: uppercase; letter-spacing: 2px; font-weight: 800; }
         
         /* Controles de Búsqueda y Filtros */
         .sticky-controls { position: sticky; top: 10px; z-index: 100; background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px; border-left: 5px solid var(--naranja-elecnor); }
+        
         .search-container { display: flex; gap: 10px; margin-bottom: 12px; }
         #searchInput { flex-grow: 1; padding: 12px; border: 2px solid #eee; border-radius: 10px; font-size: 16px; outline: none; }
         #searchInput:focus { border-color: var(--azul-elecnor); }
         .reset-btn { padding: 10px 18px; border: none; background-color: #666; color: white; border-radius: 10px; font-weight: bold; cursor: pointer; }
         
+        /* Estilos de Filtros */
         .filter-row { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
         .filter-label { font-size: 0.75em; font-weight: 800; color: var(--azul-elecnor); text-transform: uppercase; min-width: 60px; }
-        
         .filters-scroll { display: flex; overflow-x: auto; gap: 8px; padding-bottom: 5px; flex-grow: 1; scrollbar-width: none; }
         .filters-scroll::-webkit-scrollbar { display: none; }
-        
         .filter-btn { white-space: nowrap; padding: 7px 14px; border: 1.5px solid #ddd; background: white; color: #555; border-radius: 20px; font-weight: 600; cursor: pointer; font-size: 12px; transition: all 0.2s; }
-        .filter-btn:hover { border-color: var(--azul-elecnor); color: var(--azul-elecnor); }
         .filter-btn.active { background: var(--azul-elecnor); color: white; border-color: var(--azul-elecnor); }
         
-        /* Listado de Contactos */
+        /* Listado */
         #directory { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        @media (min-width: 768px) { #directory { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); } }
+        @media (min-width: 768px) { #directory { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); } }
         
         /* Tarjetas de Contacto */
-        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 3px 6px rgba(0,0,0,0.05); border-top: 4px solid var(--azul-elecnor); transition: transform 0.2s; }
-        .card:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 3px 6px rgba(0,0,0,0.05); border-top: 4px solid var(--azul-elecnor); }
         .card h3 { margin: 0 0 10px 0; font-size: 1.1em; color: #111; border-bottom: 1px solid #eee; padding-bottom: 8px; text-transform: uppercase; }
+        .info-row { font-size: 1em; margin-bottom: 8px; color: #444; display: flex; justify-content: space-between; align-items: center; }
+        .info-row strong { color: var(--azul-elecnor); font-size: 0.85em; }
+        .info-row a { color: var(--naranja-elecnor); text-decoration: none; font-weight: bold; border: 1.5px solid var(--naranja-elecnor); padding: 2px 8px; border-radius: 6px; }
         
-        .info-row { font-size: 1em; margin-bottom: 10px; color: #444; display: flex; justify-content: space-between; align-items: center; }
-        .info-row strong { color: var(--azul-elecnor); font-size: 0.9em; text-transform: uppercase; }
-        .info-row a { color: var(--naranja-elecnor); text-decoration: none; font-weight: bold; border: 1.5px solid var(--naranja-elecnor); padding: 4px 10px; border-radius: 6px; transition: background 0.2s; }
-        .info-row a:hover { background: var(--naranja-elecnor); color: white; }
-        
-        .tags-container { display: flex; gap: 8px; margin-top: 15px; }
-        .tag { padding: 5px 12px; border-radius: 6px; font-size: 0.7em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+        .tags { display: flex; gap: 8px; margin-top: 12px; }
+        .tag { padding: 4px 10px; border-radius: 6px; font-size: 0.7em; font-weight: 800; text-transform: uppercase; }
         .tag-planta { background: #eef6fc; color: var(--azul-elecnor); }
         .tag-org { background: #fff3eb; color: var(--naranja-elecnor); }
         
-        .cargando { text-align: center; color: var(--azul-elecnor); font-weight: bold; padding: 40px; font-size: 1.2em; }
+        .mensaje { text-align: center; color: var(--azul-elecnor); font-weight: bold; padding: 40px; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <img src="logo-elecnor.png" alt="Elecnor - Delegación Sur">
+        <img src="Logo elecnor.webp" alt="Elecnor - Delegación Sur">
         <h2>Delegación Sur</h2>
     </div>
     
     <div class="sticky-controls">
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Escribe un nombre para buscar...">
+            <input type="text" id="searchInput" placeholder="Buscar por nombre o unidad...">
             <button class="reset-btn" onclick="resetFilters()">Reset</button>
         </div>
         
         <div class="filter-row">
-            <span class="filter-label">Planta</span>
+            <span class="filter-label">PLANTA</span>
             <div class="filters-scroll" id="floorFilters">
                 <button class="filter-btn active" id="btn-todas-planta" onclick="filterByFloor('TODAS', this)">TODAS</button>
             </div>
         </div>
         
         <div class="filter-row">
-            <span class="filter-label">Org</span>
+            <span class="filter-label">UNIDAD</span>
             <div class="filters-scroll" id="orgFilters">
                 <button class="filter-btn active" id="btn-todas-org" onclick="filterByOrg('TODAS', this)">TODAS</button>
             </div>
@@ -88,143 +87,124 @@
     </div>
     
     <div id="directory">
-        <div class="cargando">Sincronizando con base de datos corporativa...</div>
+        <div class="mensaje">Cargando base de datos oficial...</div>
     </div>
 
     <script>
-        // URL de tu Google Sheets publicado como TSV (Valores separados por tabulaciones)
-        const hojaGoogleUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTokDup2b-7qo7KBnQoZUCALh2d36Yz__rJq8IbSegFXweLgAW0PR0kzndrFQ2fFenhjTQ37jwnWqs2/pub?output=tsv";
+        // URL de tu Google Sheets (Asegúrate que sea el enlace TSV)
+        const urlTSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTokDup2b-7qo7KBnQoZUCALh2d36Yz__rJq8IbSegFXweLgAW0PR0kzndrFQ2fFenhjTQ37jwnWqs2/pub?output=tsv";
         
         let personal = []; 
         let currentFloor = 'TODAS';
         let currentOrg = 'TODAS';
         
-        const container = document.getElementById('directory');
-        const floorCont = document.getElementById('floorFilters');
-        const orgCont = document.getElementById('orgFilters');
-        const searchInput = document.getElementById('searchInput');
+        const normalizar = (t) => t ? t.toString().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim() : "";
 
-        const normalizar = (str) => str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
-
-        async function cargarDatos() {
+        async function cargar() {
             try {
-                // Añadimos un número aleatorio al final para forzar a Google a darnos los datos frescos
-                const respuesta = await fetch(hojaGoogleUrl + "&cachebust=" + Math.random(), { cache: "no-store" });
-                if (!respuesta.ok) throw new Error("Error de conexión");
-                const textoPlano = await respuesta.text();
+                // Forzamos descarga fresca
+                const r = await fetch(urlTSV + "&v=" + Date.now());
+                if (!r.ok) throw new Error("Error de red");
+                const tabla = await r.text();
+                const filas = tabla.split(/\r?\n/).filter(f => f.trim() !== '');
                 
-                const filas = textoPlano.split(/\r?\n/).filter(fila => fila.trim() !== '');
-                if (filas.length < 2) throw new Error("Sin datos");
+                // Mapeamos las columnas basándonos en tus nombres (nombre, planta, organizacion, ext, movil)
+                personal = filas.slice(1).map(f => {
+                    const c = f.split('\t');
+                    return {
+                        nombre: c[0] ? c[0].trim() : '',
+                        planta: c[1] ? c[1].trim() : '',
+                        organizacion: c[2] ? c[2].trim() : '',
+                        ext: c[3] ? c[3].trim() : '',
+                        movil: c[4] ? c[4].trim() : ''
+                    };
+                }).filter(p => p.nombre !== "");
 
-                // Limpiamos los encabezados (quitamos tildes, espacios y minúsculas)
-                const encabezados = filas[0].split('\t').map(h => 
-                    h.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                );
-                
-                // Mapeo flexible basándonos exactamente en tus nombres de columna
-                personal = filas.slice(1).map(fila => {
-                    const valores = fila.split('\t');
-                    let obj = {};
-                    encabezados.forEach((encabezado, i) => {
-                        let clave = encabezado;
-                        // Mapeo flexible por si acaso
-                        if (clave.includes('ext')) clave = 'ext';
-                        if (clave.includes('movil')) clave = 'movil';
-                        if (clave.includes('org')) clave = 'organizacion';
-                        
-                        obj[clave] = valores[i] ? valores[i].trim().replace(/^"|"$/g, '') : '';
-                    });
-                    return obj;
-                }).filter(p => p.nombre && p.nombre.trim() !== ""); // Solo importamos si hay un nombre escrito
-
-                generarFiltros();
-                render(personal);
-
-            } catch (error) {
-                console.error(error);
-                container.innerHTML = '<div class="cargando" style="color:red;">Error de conexión. Asegúrate de estar en el enlace de GitHub Pages.</div>';
+                generarBotones();
+                renderizar();
+            } catch (e) {
+                console.error(e);
+                document.getElementById('directory').innerHTML = '<div class="mensaje" style="color:red;">Error de conexión con la base de datos corporativa.</div>';
             }
         }
 
-        function generarFiltros() {
-            // Generar filtros de planta
-            const plantas = [...new Set(personal.map(p => p.planta))].filter(Boolean).sort((a, b) => a.localeCompare(b, undefined, {numeric: true}));
-            plantas.forEach(planta => {
-                const btn = document.createElement('button');
-                btn.className = 'filter-btn';
-                btn.innerText = planta;
-                btn.onclick = (e) => filterByFloor(planta, e.target);
-                floorCont.appendChild(btn);
+        function generarBotones() {
+            const plantas = [...new Set(personal.map(p => p.planta))].filter(Boolean).sort();
+            const orgs = [...new Set(personal.map(p => p.organizacion))].filter(Boolean).sort();
+
+            plantas.forEach(p => {
+                const b = document.createElement('button');
+                b.className = 'filter-btn';
+                b.innerText = p;
+                b.onclick = (e) => filterByFloor(p, e.target);
+                document.getElementById('floorFilters').appendChild(b);
             });
 
-            // Generar filtros de organización
-            const organizaciones = [...new Set(personal.map(p => p.organizacion))].filter(Boolean).sort();
-            organizaciones.forEach(org => {
-                const btn = document.createElement('button');
-                btn.className = 'filter-btn';
-                btn.innerText = org;
-                btn.onclick = (e) => filterByOrg(org, e.target);
-                orgCont.appendChild(btn);
+            orgs.forEach(o => {
+                const b = document.createElement('button');
+                b.className = 'filter-btn';
+                b.innerText = o;
+                b.onclick = (e) => filterByOrg(o, e.target);
+                document.getElementById('orgFilters').appendChild(b);
             });
         }
 
-        function render(data) {
-            container.innerHTML = '';
-            if(data.length === 0) {
-                container.innerHTML = '<div class="cargando" style="color:#666;">No hay coincidencias para esta búsqueda.</div>';
+        function renderizar() {
+            const buscar = normalizar(document.getElementById('searchInput').value);
+            const filtrados = personal.filter(p => {
+                const matchNombre = normalizar(p.nombre).includes(buscar);
+                const matchPlanta = currentFloor === 'TODAS' || p.planta === currentFloor;
+                const matchOrg = currentOrg === 'TODAS' || p.organizacion === currentOrg;
+                return matchNombre && matchPlanta && matchOrg;
+            });
+
+            const lista = document.getElementById('directory');
+            lista.innerHTML = '';
+
+            if (filtrados.length === 0) {
+                lista.innerHTML = '<div class="mensaje" style="color:#999;">Sin resultados para esta búsqueda.</div>';
                 return;
             }
-            data.forEach(p => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <h3>${p.nombre}</h3>
-                    <div class="info-row"><strong>Extensión</strong> <span>${p.ext || '-'}</span></div>
-                    <div class="info-row"><strong>Móvil</strong> ${p.movil ? `<a href="tel:${p.movil.replace(/\./g, '')}">${p.movil}</a>` : '-'}</div>
-                    <div class="tags-container">
-                        <span class="tag tag-planta">${p.planta || '-'}</span>
-                        <span class="tag tag-org">${p.organizacion || '-'}</span>
+
+            filtrados.forEach(p => {
+                lista.innerHTML += `
+                    <div class="card">
+                        <h3>${p.nombre}</h3>
+                        <div class="info-row"><strong>EXTENSIÓN</strong> <span>${p.ext || '-'}</span></div>
+                        <div class="info-row"><strong>MÓVIL</strong> ${p.movil ? `<a href="tel:${p.movil.replace(/\./g,'')}">${p.movil}</a>` : '-'}</div>
+                        <div class="tags">
+                            <span class="tag tag-planta">${p.planta || '-'}</span>
+                            <span class="tag tag-org">${p.organizacion || '-'}</span>
+                        </div>
                     </div>
                 `;
-                container.appendChild(card);
             });
         }
 
-        function updateDisplay() {
-            const term = normalizar(searchInput.value);
-            const filtrados = personal.filter(p => {
-                const cumpleNombre = normalizar(p.nombre).includes(term);
-                const cumplePlanta = currentFloor === 'TODAS' || p.planta === currentFloor;
-                const cumpleOrg = currentOrg === 'TODAS' || p.organizacion === currentOrg;
-                return cumpleNombre && cumplePlanta && cumpleOrg;
-            });
-            render(filtrados);
-        }
-
-        window.filterByFloor = (planta, btn) => {
-            currentFloor = planta;
+        window.filterByFloor = (v, btn) => {
+            currentFloor = v;
             document.querySelectorAll('#floorFilters .filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            updateDisplay();
+            renderizar();
         };
 
-        window.filterByOrg = (org, btn) => {
-            currentOrg = org;
+        window.filterByOrg = (v, btn) => {
+            currentOrg = v;
             document.querySelectorAll('#orgFilters .filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            updateDisplay();
+            renderizar();
         };
 
         window.resetFilters = () => {
-            searchInput.value = '';
+            document.getElementById('searchInput').value = '';
             filterByFloor('TODAS', document.getElementById('btn-todas-planta'));
             filterByOrg('TODAS', document.getElementById('btn-todas-org'));
         };
 
-        searchInput.addEventListener('input', updateDisplay);
+        document.getElementById('searchInput').addEventListener('input', renderizar);
         
-        // Ejecutar la carga de datos
-        cargarDatos();
+        // Ejecutar al cargar
+        cargar();
     </script>
 </body>
 </html>
