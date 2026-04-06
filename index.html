@@ -3,123 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Directorio Elecnor</title>
+    <title>Directorio Elecnor - Delegación Sur</title>
+    <link rel="icon" type="image/x-icon" href="https://www.elecnor.com/favicon.ico">
     <style>
+        :root {
+            --azul-elecnor: #005595;
+            --naranja-elecnor: #E87722;
+            --gris-suave: #f4f7f9;
+        }
+
         * { box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f0f2f5; margin: 0; padding: 10px; }
-        .header { text-align: center; padding: 15px 0; color: #0056b3; }
-        .header h2 { margin: 0; font-size: 1.5em; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--gris-suave); margin: 0; padding: 10px; color: #333; }
         
-        .sticky-controls { 
-            position: sticky; 
-            top: 10px; 
-            z-index: 100; 
-            background: white; 
-            padding: 12px; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-            margin-bottom: 20px; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 12px; 
-        }
+        /* Cabecera */
+        .header { text-align: center; padding: 25px 0; background: white; border-radius: 0 0 20px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin: -10px -10px 20px -10px; }
+        .header img { max-width: 180px; height: auto; margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto; }
+        .header h2 { margin: 0; font-size: 1.1em; color: var(--azul-elecnor); text-transform: uppercase; letter-spacing: 2px; font-weight: 800; }
         
-        .search-container {
-            display: flex;
-            gap: 8px;
-            width: 100%;
-        }
-
-        #searchInput { 
-            flex-grow: 1;
-            padding: 10px; 
-            border: 2px solid #ddd; 
-            border-radius: 8px; 
-            font-size: 16px; 
-            outline: none; 
-        }
-        #searchInput:focus { border-color: #0056b3; }
-
-        .reset-btn {
-            padding: 10px 16px;
-            border: none;
-            background-color: #dc3545;
-            color: white;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .reset-btn:hover { background-color: #c82333; }
+        /* Controles */
+        .sticky-controls { position: sticky; top: 10px; z-index: 100; background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px; border-left: 5px solid var(--naranja-elecnor); }
+        .search-container { display: flex; gap: 10px; margin-bottom: 12px; }
+        #searchInput { flex-grow: 1; padding: 12px; border: 2px solid #eee; border-radius: 10px; font-size: 16px; outline: none; }
+        #searchInput:focus { border-color: var(--azul-elecnor); }
+        .reset-btn { padding: 10px 18px; border: none; background-color: #666; color: white; border-radius: 10px; font-weight: bold; cursor: pointer; }
         
-        .filter-container { display: flex; align-items: center; gap: 8px; }
-        .filter-label { font-size: 0.85em; font-weight: bold; color: #555; white-space: nowrap; }
+        /* Filtros */
+        .filter-row { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+        .filter-label { font-size: 0.75em; font-weight: 800; color: var(--azul-elecnor); text-transform: uppercase; min-width: 60px; }
+        .filters-scroll { display: flex; overflow-x: auto; gap: 8px; padding-bottom: 5px; flex-grow: 1; scrollbar-width: none; }
+        .filters-scroll::-webkit-scrollbar { display: none; }
+        .filter-btn { white-space: nowrap; padding: 7px 14px; border: 1.5px solid #ddd; background: white; color: #555; border-radius: 20px; font-weight: 600; cursor: pointer; font-size: 12px; }
+        .filter-btn.active { background: var(--azul-elecnor); color: white; border-color: var(--azul-elecnor); }
         
-        .filters-scroll { 
-            display: flex; 
-            overflow-x: auto; 
-            gap: 8px; 
-            padding-bottom: 10px; 
-            -webkit-overflow-scrolling: touch; 
-            flex-grow: 1;
-            scrollbar-width: thin;
-            scrollbar-color: #c1c1c1 #f1f1f1;
-        }
+        /* Listado */
+        #directory { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        @media (min-width: 768px) { #directory { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); } }
         
-        .filters-scroll::-webkit-scrollbar { height: 8px; display: block; }
-        .filters-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
-        .filters-scroll::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
-        .filters-scroll::-webkit-scrollbar-thumb:hover { background: #0056b3; }
+        /* Tarjetas */
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 3px 6px rgba(0,0,0,0.05); border-top: 4px solid var(--azul-elecnor); }
+        .card h3 { margin: 0 0 10px 0; font-size: 1.1em; color: #111; border-bottom: 1px solid #eee; padding-bottom: 8px; text-transform: uppercase; }
+        .info-row { font-size: 1em; margin-bottom: 8px; color: #444; display: flex; justify-content: space-between; align-items: center; }
+        .info-row strong { color: var(--azul-elecnor); font-size: 0.9em; }
+        .info-row a { color: var(--naranja-elecnor); text-decoration: none; font-weight: bold; border: 1px solid var(--naranja-elecnor); padding: 2px 8px; border-radius: 5px; }
         
-        .filter-btn { 
-            white-space: nowrap; 
-            padding: 6px 14px; 
-            border: none; 
-            background: #e4e6eb; 
-            color: #050505; 
-            border-radius: 15px; 
-            font-weight: 600; 
-            cursor: pointer; 
-            font-size: 13px; 
-        }
-        .filter-btn.active { background: #0056b3; color: white; }
+        .tags { display: flex; gap: 8px; margin-top: 12px; }
+        .tag { padding: 4px 10px; border-radius: 6px; font-size: 0.7em; font-weight: 800; text-transform: uppercase; }
+        .tag-planta { background: #eef6fc; color: var(--azul-elecnor); }
+        .tag-org { background: #fff3eb; color: var(--naranja-elecnor); }
         
-        #directory { display: grid; grid-template-columns: 1fr; gap: 12px; }
-        @media (min-width: 600px) { #directory { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); } }
-        
-        .card { background: white; padding: 16px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; flex-direction: column; gap: 8px; }
-        .card h3 { margin: 0; font-size: 1.1em; color: #1c1e21; text-transform: uppercase; }
-        .info-row { font-size: 0.95em; color: #444; display: flex; justify-content: flex-start; gap: 10px; }
-        .info-row strong { color: #0056b3; }
-        .info-row a { color: inherit; text-decoration: none; font-weight: bold;}
-        .tags-container { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
-        .tag { padding: 4px 10px; border-radius: 6px; font-size: 0.75em; font-weight: bold; text-transform: uppercase; }
-        .tag-planta { background: #e7f3ff; color: #1877f2; }
-        .tag-org { background: #f2f2f2; color: #65676b; }
-        
-        .cargando { text-align: center; color: #0056b3; font-weight: bold; padding: 20px; }
+        .mensaje { text-align: center; color: var(--azul-elecnor); font-weight: bold; padding: 40px; }
     </style>
 </head>
 <body>
 
-    <div class="header"><h2>Directorio Elecnor</h2></div>
+    <div class="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Logo_Elecnor.png" alt="Elecnor">
+        <h2>Delegación Sur</h2>
+    </div>
     
     <div class="sticky-controls">
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar por nombre...">
+            <input type="text" id="searchInput" placeholder="Escribe un nombre para buscar...">
             <button class="reset-btn" onclick="resetFilters()">Reset</button>
         </div>
         
-        <div class="filter-container">
-            <span class="filter-label">Planta:</span>
+        <div class="filter-row">
+            <span class="filter-label">PLANTA</span>
             <div class="filters-scroll" id="floorFilters">
                 <button class="filter-btn active" id="btn-todas-planta" onclick="filterByFloor('TODAS', this)">TODAS</button>
             </div>
         </div>
         
-        <div class="filter-container">
-            <span class="filter-label">Org:</span>
+        <div class="filter-row">
+            <span class="filter-label">UNIDAD</span>
             <div class="filters-scroll" id="orgFilters">
                 <button class="filter-btn active" id="btn-todas-org" onclick="filterByOrg('TODAS', this)">TODAS</button>
             </div>
@@ -127,125 +83,120 @@
     </div>
     
     <div id="directory">
-        <div class="cargando">Cargando base de datos...</div>
+        <div class="mensaje">Conectando con el servidor de Elecnor...</div>
     </div>
 
     <script>
-        // ENLACE TSV INTEGRADO
-        const hojaGoogleUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTokDup2b-7qo7KBnQoZUCALh2d36Yz__rJq8IbSegFXweLgAW0PR0kzndrFQ2fFenhjTQ37jwnWqs2/pub?output=tsv";
+        // URL de tu Google Sheets (Asegúrate que sea el enlace TSV)
+        const urlTSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTokDup2b-7qo7KBnQoZUCALh2d36Yz__rJq8IbSegFXweLgAW0PR0kzndrFQ2fFenhjTQ37jwnWqs2/pub?output=tsv";
         
-        let personal = []; 
-        let currentFloor = 'TODAS';
-        let currentOrg = 'TODAS';
+        let datosOriginales = []; 
+        let filtroPlanta = 'TODAS';
+        let filtroOrg = 'TODAS';
         
-        const container = document.getElementById('directory');
-        const floorCont = document.getElementById('floorFilters');
-        const orgCont = document.getElementById('orgFilters');
-        const searchInput = document.getElementById('searchInput');
+        const normalizar = (t) => t ? t.toString().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim() : "";
 
-        const normalizar = (str) => str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
-
-        async function cargarDatos() {
+        async function cargar() {
             try {
-                const respuesta = await fetch(hojaGoogleUrl);
-                const textoPlano = await respuesta.text();
-                const filas = textoPlano.split('\n').filter(fila => fila.trim() !== '');
-                const encabezados = filas[0].split('\t').map(h => h.trim().toLowerCase());
+                // Forzamos descarga fresca añadiendo un parámetro aleatorio al final de la URL
+                const r = await fetch(urlTSV + "&v=" + Date.now());
+                const tabla = await r.text();
+                const filas = tabla.split(/\r?\n/).filter(f => f.trim() !== '');
                 
-                personal = filas.slice(1).map(fila => {
-                    const valores = fila.split('\t');
-                    let obj = {};
-                    encabezados.forEach((encabezado, i) => {
-                        obj[encabezado] = valores[i] ? valores[i].trim().replace(/^"|"$/g, '') : '';
-                    });
-                    return obj;
-                });
+                // Mapeamos las columnas basándonos exactamente en tus nombres
+                datosOriginales = filas.slice(1).map(f => {
+                    const c = f.split('\t');
+                    return {
+                        nombre: c[0] ? c[0].trim() : '',
+                        planta: c[1] ? c[1].trim() : '',
+                        organizacion: c[2] ? c[2].trim() : '',
+                        ext: c[3] ? c[3].trim() : '',
+                        movil: c[4] ? c[4].trim() : ''
+                    };
+                }).filter(p => p.nombre !== "");
 
-                generarFiltros();
-                render(personal);
-
-            } catch (error) {
-                container.innerHTML = '<div class="cargando" style="color:red;">Error cargando la base de datos. Verifica la publicación del archivo.</div>';
-                console.error("Error:", error);
+                generarBotones();
+                renderizar();
+            } catch (e) {
+                document.getElementById('directory').innerHTML = '<div class="mensaje" style="color:red;">Error de conexión. Por favor, abre la web desde el enlace de GitHub.</div>';
             }
         }
 
-        function generarFiltros() {
-            const plantas = [...new Set(personal.map(p => p.planta))].filter(Boolean).sort((a, b) => a.localeCompare(b, undefined, {numeric: true}));
-            plantas.forEach(planta => {
-                const btn = document.createElement('button');
-                btn.className = 'filter-btn';
-                btn.innerText = planta;
-                btn.onclick = (e) => filterByFloor(planta, e.target);
-                floorCont.appendChild(btn);
+        function generarBotones() {
+            const plantas = [...new Set(datosOriginales.map(p => p.planta))].filter(Boolean).sort();
+            const orgs = [...new Set(datosOriginales.map(p => p.organizacion))].filter(Boolean).sort();
+
+            plantas.forEach(p => {
+                const b = document.createElement('button');
+                b.className = 'filter-btn';
+                b.innerText = p;
+                b.onclick = (e) => filterByFloor(p, e.target);
+                document.getElementById('floorFilters').appendChild(b);
             });
 
-            const organizaciones = [...new Set(personal.map(p => p.organizacion))].filter(Boolean).sort();
-            organizaciones.forEach(org => {
-                const btn = document.createElement('button');
-                btn.className = 'filter-btn';
-                btn.innerText = org;
-                btn.onclick = (e) => filterByOrg(org, e.target);
-                orgCont.appendChild(btn);
+            orgs.forEach(o => {
+                const b = document.createElement('button');
+                b.className = 'filter-btn';
+                b.innerText = o;
+                b.onclick = (e) => filterByOrg(o, e.target);
+                document.getElementById('orgFilters').appendChild(b);
             });
         }
 
-        function render(data) {
-            container.innerHTML = '';
-            if(data.length === 0) {
-                container.innerHTML = '<div class="cargando">No hay coincidencias.</div>';
+        function renderizar() {
+            const buscar = normalizar(document.getElementById('searchInput').value);
+            const filtrados = datosOriginales.filter(p => {
+                const matchNombre = normalizar(p.nombre).includes(buscar);
+                const matchPlanta = filtroPlanta === 'TODAS' || p.planta === filtroPlanta;
+                const matchOrg = filtroOrg === 'TODAS' || p.organizacion === filtroOrg;
+                return matchNombre && matchPlanta && matchOrg;
+            });
+
+            const lista = document.getElementById('directory');
+            lista.innerHTML = '';
+
+            if (filtrados.length === 0) {
+                lista.innerHTML = '<div class="mensaje" style="color:#999;">Sin resultados para esta búsqueda.</div>';
                 return;
             }
-            data.forEach(p => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <h3>${p.nombre || 'Sin Nombre'}</h3>
-                    <div class="info-row"><strong>Ext:</strong> ${p.ext || '-'}</div>
-                    <div class="info-row"><strong>Móvil:</strong> <a href="tel:${(p.movil || '').replace(/\./g, '')}">${p.movil || '-'}</a></div>
-                    <div class="tags-container">
-                        <span class="tag tag-planta">${p.planta || '-'}</span>
-                        <span class="tag tag-org">${p.organizacion || '-'}</span>
+
+            filtrados.forEach(p => {
+                lista.innerHTML += `
+                    <div class="card">
+                        <h3>${p.nombre}</h3>
+                        <div class="info-row"><strong>EXTENSIÓN</strong> <span>${p.ext || '-'}</span></div>
+                        <div class="info-row"><strong>MÓVIL</strong> ${p.movil ? `<a href="tel:${p.movil.replace(/\./g,'')}">${p.movil}</a>` : '-'}</div>
+                        <div class="tags">
+                            <span class="tag tag-planta">${p.planta || '-'}</span>
+                            <span class="tag tag-org">${p.organizacion || '-'}</span>
+                        </div>
                     </div>
                 `;
-                container.appendChild(card);
             });
         }
 
-        function updateDisplay() {
-            const term = normalizar(searchInput.value);
-            const filtrados = personal.filter(p => {
-                const cumpleNombre = normalizar(p.nombre).includes(term);
-                const cumplePlanta = currentFloor === 'TODAS' || p.planta === currentFloor;
-                const cumpleOrg = currentOrg === 'TODAS' || p.organizacion === currentOrg;
-                return cumpleNombre && cumplePlanta && cumpleOrg;
-            });
-            render(filtrados);
-        }
-
-        window.filterByFloor = (planta, btn) => {
-            currentFloor = planta;
+        window.filterByFloor = (v, btn) => {
+            filtroPlanta = v;
             document.querySelectorAll('#floorFilters .filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            updateDisplay();
+            renderizar();
         };
 
-        window.filterByOrg = (org, btn) => {
-            currentOrg = org;
+        window.filterByOrg = (v, btn) => {
+            filtroOrg = v;
             document.querySelectorAll('#orgFilters .filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            updateDisplay();
+            renderizar();
         };
 
         window.resetFilters = () => {
-            searchInput.value = '';
+            document.getElementById('searchInput').value = '';
             filterByFloor('TODAS', document.getElementById('btn-todas-planta'));
             filterByOrg('TODAS', document.getElementById('btn-todas-org'));
         };
 
-        searchInput.addEventListener('input', updateDisplay);
-
-        cargarDatos();
+        document.getElementById('searchInput').addEventListener('input', renderizar);
+        cargar();
     </script>
 </body>
 </html>
